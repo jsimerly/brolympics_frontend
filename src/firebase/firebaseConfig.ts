@@ -1,19 +1,18 @@
 import { initializeApp } from 'firebase/app';
-import { connectAuthEmulator, getAuth } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_GFB_API_KEY,
     authDomain: import.meta.env.VITE_GFB_AUTH_DOMAIN,
-    projectID: import.meta.env.VITE_GFB_PROJECT_ID,
+    projectId: import.meta.env.VITE_GFB_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_GFB_STORAGE_BUCKET,
+    messageSenderId: import.meta.env.VITE_GFB_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_GFB_APP_ID,
 }
   
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 
-if (import.meta.env.VITE_APP_ENV === 'DEV') {
-    connectAuthEmulator(auth, "http://localhost:9099")
-}
-
-export { auth }
+export { auth, app }
 export default app;
   
